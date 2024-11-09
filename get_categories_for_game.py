@@ -16,8 +16,15 @@ AUTHORIZATION=get_token.authorization()
 category_dict={}
 categories=open(HEROIC_CONFIG)
 data=json.load(categories)
+games_total=len(game_library.library_dict)
+game_counter=0
+
+print('Fetching game categories...')
 
 for app_name in game_library.library_dict:
+    game_counter+=1
+    print(f'[{game_counter}/{games_total}] {app_name}')
+
     url = 'https://api.igdb.com/v4/games/?search=' + app_name + '&fields=id,name,genres'
     response = post(url, **{'headers': {'Client-ID': f'{CLIENT_ID}', 'Authorization': f'Bearer {AUTHORIZATION}'},'data': 'fields category,checksum,content_descriptions,rating,rating_cover_url,synopsis;'})
 

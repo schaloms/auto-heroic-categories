@@ -34,6 +34,14 @@ def library(library,root_json: str):
 
     library.close()
 
+print('Loading GOG games library...')
 library(GOG_LIBRARY, 'games')
+
+print('Loading Amazon games library...')
 library(AMAZON_LIBRARY, 'library')
+
+print('Loading Epic games library...')
 library(EPIC_LIBRARY, 'library')
+
+print(len(library_dict), 'games found')
+
